@@ -1,7 +1,7 @@
 <%-- 
     Document   : buscar_editar_borrar
     Created on : 5/11/2024, 4:31:27 p. m.
-    Author     : Dina Perez
+    Author     : Abraham Yendes
 --%>
 
 <%@page import="Domain.Model.Usuario"%>
@@ -14,22 +14,22 @@
         <script>
             function enableButtons(){
                 document.getElementById("editarBtn").disabled = false;
-                document.getElementById("eliminarBtn").disable = false;
+                document.getElementById("eliminarBtn").disabled = false;
             }
             
             function disableButtons(){
                 document.getElementById("editarBtn").disabled = true;
-                document.getElementById("eliminarBtn").disable = true;
+                document.getElementById("eliminarBtn").disabled = true;
             }
             
-            function.setActionAndSubmint(action, confirmMessage){
+            function setActionAndSubmit(action, confirmMessage){
                 if (confirmMessage){
-                    if (!confirmMessage){
+                    if (!confirm(confirmMessage)){
                        return; 
                     }
                 }
                 document.getElementById("actionInput").value = action;
-                document.getElementById("buscar").submit();
+                document.getElementById("usuarioForm").submit();
             }
         </script>
     </head>
@@ -42,7 +42,7 @@
         <p style ="color:green;"><%= request.getAttribute("successMessage") %></p>
         <% } %>
         <%-- Formulario --%>
-        <form id="buscar" action="<%= request.getContextPath() %>/Controllers/UsuarioCrontrollers.jsp" method="post">
+        <form id="usuarioForm" action="<%= request.getContextPath() %>/Controllers/UsuarioControllers.jsp" method="post">
             <input type="hidden" id="actionInput" name="action" value="buscar">
             <label for="buscarId">Codigo de Usuario:</label><br>
             <input type="text" id="id" name="id" required value="<%= session.getAttribute("buscarUsuario")!= null ? ((Usuario)session.getAttribute("buscarUsuario")).getId() : "" %>">
@@ -81,12 +81,12 @@
             <br>
             
             <label for="telefono">Nuevo Telefono</label><br>
-            <input type="telefono" id="telefono" name="telefono" value="<%= sessionUsuario.getEmail() %>" required>
+            <input type="tel" id="telefono" name="telefono" value="<%= sessionUsuario.getTelefono() %>" required>
             <br>
             <br>
             
             <label for="estado">Nuevo Estado</label><br>
-            <input type="text" id="estado" name="estado" value="<%= sessionUsuario.getEmail() %>" required>
+            <input type="text" id="estado" name="estado" value="<%= sessionUsuario.getEstado() %>" required>
             <% } else {%>
             <p>No se consultado o el usuario no existe</p>
             <% }%>
@@ -97,6 +97,6 @@
             <button type="button" id= "eliminarBtn" disabled onclick="setActionAndSubmit('eliminar', '¿Seguro que desea eliminar este usuario?')" >Eliminar Usuario</button>
         </form>
             <br>
-            <a href="<%= request.getContextPath() %>/index.jsp">Menú Principal<a/>
+            <a href="<%= request.getContextPath() %>/index.jsp">Menú Principal</a>
     </body>
 </html>

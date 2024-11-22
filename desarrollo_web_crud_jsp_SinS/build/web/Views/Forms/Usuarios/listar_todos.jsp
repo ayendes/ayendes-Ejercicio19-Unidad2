@@ -1,7 +1,7 @@
 <%-- 
     Document   : listar_todos
     Created on : 5/11/2024, 4:31:51 p. m.
-    Author     : Dina Perez
+    Author     : Abraham Yendes
 --%>
 
 <%@page import="java.util.List"%>
@@ -50,7 +50,7 @@
                     </td> 
                     <td>
                         <a href="UsuarioControllers.jsp?action=buscar&id=<%= usuario.getId()%>" >Editar</a>
-                        <a href="UsuarioControllers.jsp?action=eliminarfl&id=<%= usuario.getId()%>"onclick="return confirm('¿Seguro que desea eliminar este usuario?');">Eliminar</a>
+                        <a href="UsuarioControllers.jsp?action=eliminarfl&id=<%= usuario.getId()%>" onclick="return confirm('¿Seguro que desea eliminar este usuario?');">Eliminar</a>
                     </td> 
                 </tr>
                 <% } %>
@@ -63,6 +63,6 @@
         </table>
             
             <br>
-            <a href="<%= request.getContextPath() %>Controllers/UsuarioControllers.jsp?action=crear">Agregar Nuevo Usuario</a>
+            <a href="<%= request.getContextPath() %>/Controllers/UsuarioControllers.jsp?action=mostrarCrearFormulario">Agregar Nuevo Usuario</a>
     </body>
 </html>
