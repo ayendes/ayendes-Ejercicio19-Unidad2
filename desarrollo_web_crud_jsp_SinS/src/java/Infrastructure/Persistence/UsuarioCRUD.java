@@ -45,7 +45,7 @@ public class UsuarioCRUD {
     
     // Metodo para consultar usuario por ID
     public Usuario buscarUsuarioPorId(int id) throws SQLException, UsuarioNotFoundException{
-       String query = "SELECT * FROM Usuarios WHERE code=?";
+       String query = "SELECT * FROM Usuarios WHERE id=?";
        Usuario usuario = null;
        try(Connection con = ConnectionDbMySql.getConnection(); PreparedStatement stmt = con.prepareStatement(query)){
            stmt.setInt(1, id);
@@ -102,17 +102,17 @@ public class UsuarioCRUD {
     // Metodo para actualizar usuario
     public void actualizarUsuario(Usuario usuario) throws SQLException, UsuarioNotFoundException{
        
-       String query = "UPDATE Usuarios SET password=?, nombre=?, apellido=?, rol=?, email=?, telefono=?, estado=? WHERE id=?";
+       String query = "UPDATE Usuarios SET password=?, nombre=?, apellidos=?, email=?, telefono=?, estado=? WHERE id=?";
        
        try(Connection con = ConnectionDbMySql.getConnection(); PreparedStatement stmt = con.prepareStatement(query)){
-           stmt.setInt(1, usuario.getId());
+           //stmt.setInt(1, usuario.getId());
            stmt.setString(1, usuario.getPassword());
-           stmt.setString(1, usuario.getNombre());
-           stmt.setString(1, usuario.getApellidos());
-           stmt.setString(1, usuario.getRol());
-           stmt.setString(1, usuario.getEmail());
-           stmt.setString(1, usuario.getTelefono());
-           stmt.setString(1, usuario.getEstado());
+           stmt.setString(2, usuario.getNombre());
+           stmt.setString(3, usuario.getApellidos());
+           stmt.setString(4, usuario.getEmail());
+           stmt.setString(5, usuario.getTelefono());
+           stmt.setString(6, usuario.getEstado());
+           stmt.setInt(7, usuario.getId());
            int rowsAffected = stmt.executeUpdate();
            if (rowsAffected == 0){
                throw new UsuarioNotFoundException("Usuario con id: "+ usuario.getId() +" no existe");

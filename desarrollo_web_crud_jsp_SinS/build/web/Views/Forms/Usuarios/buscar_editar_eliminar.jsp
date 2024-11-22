@@ -71,7 +71,7 @@
             <br>
             
             <label for="apellidos">Nuevo Apellidos</label><br>
-            <input type="text" id="apellidos" name="apellidos" value="<%= sessionUsuario.getNombre() %>" required>
+            <input type="text" id="apellidos" name="apellidos" value="<%= sessionUsuario.getApellidos() %>" required>
             <br>
             <br>
             
@@ -93,7 +93,7 @@
             <br>
             
             <button type="submit" onclick="setActionAndSubmit('buscar')" id="buscarBtn">Buscar Usuario</button>
-            <button type="button" id= "editarBtn" disabled onclick="setActionAndSubmit('editar', '¿Seguro que desea editar este usuario?')" >Editar Usuario</button>
+            <button type="button" id= "editarBtn" disabled onclick="setActionAndSubmit('actualizar', '¿Seguro que desea editar este usuario?')" >Editar Usuario</button>
             <button type="button" id= "eliminarBtn" disabled onclick="setActionAndSubmit('eliminar', '¿Seguro que desea eliminar este usuario?')" >Eliminar Usuario</button>
         </form>
             <br>

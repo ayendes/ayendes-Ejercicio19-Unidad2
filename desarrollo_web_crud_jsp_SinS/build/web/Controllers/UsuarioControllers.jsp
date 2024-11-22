@@ -3,6 +3,8 @@
     Created on : 5/11/2024, 4:29:52 p. m.
     Author     : Abraham Yendes
 --%>
+<%@page import="java.time.ZoneId"%>
+<%@page import="java.time.LocalDate"%>
 <%@page import="java.text.ParseException" %>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.Date"%>
@@ -11,8 +13,8 @@
 <%@page import="Business.Exceptions.DuplicateUsuarioException"%>
 <%@page import="java.io.IOException"%> <!-- IMPORTACIóN DE IOException -->
 <%@page import="jakarta.servlet.ServletException"%> <!-- IMPORTACION DE ServletException -->
-<%@page import="jakarta.servlet.http.HttpServletRequest"%> <!-- IMPORTACI'N DE HttpServletRequest -->
-<%@page import="jakarta.servlet.http.HttpServletResponse"%> <!-- IMPORTACI'N DE HttpServletResponse -->
+<%@page import="jakarta.servlet.http.HttpServletRequest"%> <!-- IMPORTACIoN DE HttpServletRequest -->
+<%@page import="jakarta.servlet.http.HttpServletResponse"%> <!-- IMPORTACIoN DE HttpServletResponse -->
 <%@page import="jakarta.servlet.http.HttpSession"%> <!-- IMPORTACI'N DE HttpSession -->
 <%@page import="Business.Services.UsuarioService"%>
 <%@page import="Domain.Model.Usuario"%>
@@ -183,13 +185,9 @@
         String email = request.getParameter("email");
         String telefono = request.getParameter("telefono");
         String estado = request.getParameter("estado");
-        String fecha = request.getParameter("fecha_registro");
-        SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
-        Date fecha_registro = null;
-        try {
-            fecha_registro = formato.parse(fecha);
-        } catch (ParseException e) {
-        }
+        LocalDate localDate = LocalDate.of(2024, 11, 22);
+        Date fecha_registro = Date.from(localDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
+    
         try {
             usuarioService.actualizarUsuario(id, password, nombre, apellidos, rol, email, telefono, estado, fecha_registro);
             request.setAttribute("successMessage", "Usuario actualizado exitosamente.");
