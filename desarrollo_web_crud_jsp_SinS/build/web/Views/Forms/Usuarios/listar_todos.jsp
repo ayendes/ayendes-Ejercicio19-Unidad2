@@ -34,6 +34,7 @@
                     <th>Telefono</th> 
                     <th>Estado</th> 
                     <th>Fecha de Registro</th> 
+                    <th>Acciones</th> 
                 </tr>
             </thead>
             <tbody>
@@ -42,12 +43,18 @@
                 <% for (Usuario usuario : usuarios) {%>
                 <tr>
                     <td><%= usuario.getId()%></td>
+                    <td><%= usuario.getPassword()%></td> 
                     <td><%= usuario.getNombre()%></td> 
+                    <td><%= usuario.getApellidos()%></td> 
+                    <td><%= usuario.getRol()%></td> 
                     <td>
                         <a href="mailto:?cc<%= usuario.getEmail()%>&subject=Saludos &body= Buenas, Saludos">
                             <%= usuario.getEmail()%>
                         </a>    
                     </td> 
+                    <td><%= usuario.getTelefono()%></td> 
+                    <td><%= usuario.getEstado()%></td> 
+                    <td><%= usuario.getFecha_registro()%></td> 
                     <td>
                         <a href="UsuarioControllers.jsp?action=buscar&id=<%= usuario.getId()%>" >Editar</a>
                         <a href="UsuarioControllers.jsp?action=eliminarfl&id=<%= usuario.getId()%>" onclick="return confirm('¿Seguro que desea eliminar este usuario?');">Eliminar</a>
@@ -56,7 +63,7 @@
                 <% } %>
                 <% } else{ %>
                 <tr>
-                    <td colspan="4">No hay usuarios disponibles</td>
+                    <td colspan="10">No hay usuarios disponibles</td>
                 </tr>
                 <% } %>
             </tbody>

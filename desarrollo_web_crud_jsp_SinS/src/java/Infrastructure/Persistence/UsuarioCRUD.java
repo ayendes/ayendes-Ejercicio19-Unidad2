@@ -105,7 +105,7 @@ public class UsuarioCRUD {
        String query = "UPDATE Usuarios SET password=?, nombre=?, apellidos=?, email=?, telefono=?, estado=? WHERE id=?";
        
        try(Connection con = ConnectionDbMySql.getConnection(); PreparedStatement stmt = con.prepareStatement(query)){
-           //stmt.setInt(1, usuario.getId());
+           
            stmt.setString(1, usuario.getPassword());
            stmt.setString(2, usuario.getNombre());
            stmt.setString(3, usuario.getApellidos());
